@@ -6,35 +6,26 @@ let PORT = 8081;
 app.use(express.json());
 
 // Rota GET
-app.get('/alunos/notas', (req, res) => {
+app.get('/soma', (req, res) => {
     try {
-        res.status(200).json({ message: 'Servidor inicializado' });
+        res.status(200).json({ message: 'Vamos somar :D' });
     } catch (error) {
         res.status(500).json(error);
     }
 });
 
-app.post('/alunos/notas', (req, res) => {
+// Rota POST
+app.post('/soma', (req, res) => {
     try {
-        const { nome, nota } = req.body;
-
+        const numeros = req.body.numero;       
         
-        if (typeof nome !== "string" || isNaN(nota)) {
-            return res.status(400).json({ message: "Formulário incorreto" });
+        if ((numeros)) {
+            return res.status(400).json({ message: "O campo 'numeros' deve ser um array" });
         }
 
-        const notas = [nota];
-
-
-        const media = notas.reduce((acc, curr) => acc + curr, 0) / notas.length;
-
-        res.status(201).json({
-            message: "Nota registrada com sucesso",
-            "aluno": nome,
-            "nota": nota,
-            "media": media
-        });
-
+        const total = numeros.reduce((acc, curr) => acc + Number(curr), 0);
+        
+        res.status(200).json({ message: `A soma dos números é ${total}` });
     } catch (error) {
         res.status(500).json(error);
     }
