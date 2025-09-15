@@ -5,7 +5,7 @@ let PORT = 8081;
 
 app.use(express.json());
 
-// Rota GET
+
 app.get('/soma', (req, res) => {
     try {
         res.status(200).json({ message: 'Vamos somar :D' });
@@ -14,7 +14,7 @@ app.get('/soma', (req, res) => {
     }
 });
 
-// Rota POST
+
 app.post('/soma', (req, res) => {
     try {
         const numeros = req.body.numero;       
