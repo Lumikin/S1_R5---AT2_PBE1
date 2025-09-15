@@ -19,8 +19,8 @@ app.post('/soma', (req, res) => {
     try {
         const numeros = req.body.numero;       
         
-        if ((numeros)) {
-            return res.status(400).json({ message: "O campo 'numeros' deve ser um array" });
+        if (numeros) {
+            return res.status(400).json({ message: "Os numeros dever ser colocados corretamente" });
         }
 
         const total = numeros.reduce((acc, curr) => acc + Number(curr), 0);
